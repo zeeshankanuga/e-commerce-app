@@ -33,13 +33,13 @@ const Footer = () => {
           <div>
             <Logo />
             <div className="dark:text-gray-400">
-              <p className="mt-6">Bihar, India</p>
+              <p className="mt-6">Gujarat, India</p>
 
-              <a href="mailto:iemafzalhassan@gmail.com" className="block mt-3">
-                iemafzalhassan@gmail.com
+              <a href="mailto:zeeshan.kanuga@gmail.com" className="block mt-3">
+                zeeshan.kanuga@gmail.com
               </a>
-              <a href="tel:+91 9400344657" className="block mt-1">
-                +91 9400344657
+              <a href="tel:+91 8460588848" className="block mt-1">
+                +91 8460588848
               </a>
 
               <div className="flex flex-wrap gap-3 items-center mt-4">
@@ -210,19 +210,18 @@ const Footer = () => {
             </span>{" "}
             by{" "}
             <a
-              href="https://iemafzalhassan.tech"
+              href="https://zeeshankanuga.com"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium hover:text-primary transition-all duration-300 hover:underline decoration-primary decoration-2 underline-offset-4"
             >
-              Md. Afzal Hassan Ehsani
+              Zeeshan Kanuga
             </a>
           </div>
           
           <div className="flex items-center justify-center gap-2 text-xs">
             <span className="font-medium">{"\u00A9"}</span> {new Date().getFullYear()} All Rights Reserved •{" "}
             <span className="text-gray-600 dark:text-gray-300">
-              Released under MIT License for Educational Purposes
             </span>
           </div>
         </div>
