@@ -49,7 +49,7 @@ const Footer = () => {
                   asChild
                 >
                   <a
-                    href="https://github.com/iemafzalhassan"
+                    href="https://github.com/zeeshankanuga"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -62,7 +62,7 @@ const Footer = () => {
                   asChild
                 >
                   <a
-                    href="https://twitter.com/iemafzalhassan"
+                    href="https://twitter.com/zeeshankanuga"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -75,7 +75,7 @@ const Footer = () => {
                   asChild
                 >
                   <a
-                    href="https://www.linkedin.com/in/iemafzalhassan"
+                    href="https://www.linkedin.com/in/zeeshankanuga"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
