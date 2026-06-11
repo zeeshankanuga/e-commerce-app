@@ -36,7 +36,9 @@ services:
 
 
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: myapp
     env_file:
      - .env
@@ -48,8 +50,7 @@ services:
       - mynetwork
     ports:
       - "3000:3000"
-    environment:
-      - NODE_ENV=production
+
 networks:
   mynetwork:
     driver: bridge
