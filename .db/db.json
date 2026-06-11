@@ -9783,12 +9783,6 @@
       "password": "$2a$10$fOf3JL81h0c7Wz8ehy1T4OAdFx3SE3cicOmHFOI20cE4cFXoDKCzi",
       "name": "demo",
       "id": 3
-    },
-    {
-      "email": "sahil@tws.com",
-      "password": "$2a$10$qE9DUkoIvN/KR6syPO7m7OJkVdMlVpUzXrIVLkY77DaSzST0KRc6O",
-      "name": "sahil",
-      "id": 4
     }
   ]
 }

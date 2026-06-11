@@ -29,23 +29,9 @@ const productSchema = new mongoose.Schema({
 const Product = mongoose.models.Product || mongoose.model('Product', productSchema);
 
 // Function to get correct image path based on shop category
-function getImagePath(originalPath: string, shopCategory: string): string {
-  const fileName = path.basename(originalPath);
-  const categoryMap: { [key: string]: string } = {
-    electronics: 'gadgetsImages',
-    medicine: 'medicineImages',
-    grocery: 'groceryImages',
-    clothing: 'clothingImages',
-    furniture: 'furnitureImages',
-    books: 'books',
-    beauty: 'makeupImages',
-    snacks: 'groceryImages',
-    bakery: 'bakeryImages',
-    bags: 'bagsImages'
-  };
-  
-  const imageDir = categoryMap[shopCategory] || shopCategory + 'Images';
-  return `/${imageDir}/${fileName}`;
+function getImagePath(originalPath: string, shopCategory: string, title: string): string {
+  // Return a placeholder URL for images
+  return `https://via.placeholder.com/300x200?text=${encodeURIComponent(title)}`;
 }
 
 async function migrateData() {
@@ -89,7 +75,7 @@ async function migrateData() {
 
       // Fix image paths
       const fixedImages = product.image.map((img: string) => 
-        getImagePath(img, product.shop_category)
+        getImagePath(img, product.shop_category, product.title)
       );
 
       return {
