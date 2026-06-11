@@ -1,16 +1,41 @@
-### writing multistage docker file for nodejs app
+# =========================
+# 1. Dependencies
+# =========================
+FROM node:20-alpine AS deps
 
-FROM node:20-alpine as builder
 WORKDIR /app
+
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
-##### Stage 2: Build the app
 
-FROM node:20-slim
+# =========================
+# 2. Builder
+# =========================
+FROM node:20-alpine AS builder
+
 WORKDIR /app
-# Copy the built files from the builder stage
-COPY --from=builder /app/node_modules ./node_modules
+
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+RUN npm run build
+
+
+# =========================
+# 3. Runner
+# =========================
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+COPY package*.json ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/next.config.* ./
+
 EXPOSE 3000
+
 CMD ["npm", "start"]
