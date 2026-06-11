@@ -1,0 +1,58 @@
+### Docker-compose file to create mongodb
+### create onetime file to copy data to mongodb container
+### create app which is dependent on mongodb container
+### run all containers in single network
+
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - mynetwork
+
+  migration:
+    build:
+        context: .
+        dockerfile: scripts/Dockerfile.migration
+    container_name: migration
+    env_file:
+     - .env
+  
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - mynetwork
+
+
+  app:
+    build: .
+    container_name: myapp
+    env_file:
+     - .env
+    depends_on:
+      migration:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    networks:
+      - mynetwork
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  data:

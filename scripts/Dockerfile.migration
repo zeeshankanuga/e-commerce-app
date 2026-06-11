@@ -1,0 +1,16 @@
+### This file is used to migrate data from database to mongo db, this is one time run of this docker file.
+
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install necessary build dependencies
+RUN apk add --no-cache python3 make g++
+
+COPY package*.json tsconfig.json ./
+COPY scripts ./scripts
+COPY .db ./.db
+
+RUN npm install
+
+CMD ["npx", "ts-node", "scripts/migrate-data.ts", "scripts/tsconfig.json"]
