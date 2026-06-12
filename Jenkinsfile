@@ -1,9 +1,3 @@
-# Jenkins file for building and deploying the application
-# fetching the code from the repository and running the build and deployment stages
-# fetch code
-# build image with jenkins pipeline number
-# apply tag to the image (eg. zeeshankanuga/onineshop:jenkins-pipeline-number)
-# push image to docker registry
 
 pipeline {
     agent any
