@@ -15,7 +15,9 @@ pipeline {
                 // Build the Docker image with the Jenkins pipeline number as the tag
                 script {
                     def imageName = "e-commerce-app:${env.BUILD_NUMBER}"
-                    sh "docker build -t ${imageName} ."
+                    sh """
+                    DOCKER_BUILDKIT=0 docker build -t ${imageName} .
+                    """
                 }
             }
         }
