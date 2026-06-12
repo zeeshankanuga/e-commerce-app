@@ -6,7 +6,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from the repository
-                git 'https://github.com/zeeshankanuga/e-commerce-app.git'}
+                git 'https://github.com/zeeshankanuga/e-commerce-app.git'
+                // }
             }
         }
         stage('Build') {
@@ -29,4 +30,4 @@ pipeline {
             }
         }
     }
-}
+
