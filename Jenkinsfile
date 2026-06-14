@@ -25,6 +25,7 @@ pipeline {
             steps {
                 // Push the Docker image to the registry
                 script {
+
                     def imageName = "e-commerce-app:${env.BUILD_NUMBER}"
                     sh "docker tag ${imageName} zeeshankanuga/${imageName}"
                     sh "docker push zeeshankanuga/${imageName}"
