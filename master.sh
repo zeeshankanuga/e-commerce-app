@@ -5,6 +5,7 @@
 # restart docker and jenkins services
 
 #!/bin/bash
+
 # Install Jenkins
 sudo apt update
 sudo apt install fontconfig openjdk-21-jre
