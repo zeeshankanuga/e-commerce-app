@@ -2,6 +2,9 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_USER = 'zeeshankanuga'
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -28,6 +31,16 @@ pipeline {
 
                     def imageName = "e-commerce-app:${env.BUILD_NUMBER}"
                     sh "docker tag ${imageName} zeeshankanuga/${imageName}"
+
+            // Make sure 'docker-hub-credentials' matches the ID you created in Jenkins UI
+            withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials',
+                                             usernameVariable: 'DOCKER_USER', 
+                                             passwordVariable: 'DOCKER_PASSWORD')]) {
+                
+                // Securely pipe the password into the login command
+                sh "echo '${DOCKER_PASSWORD}' | docker login -u '${DOCKER_USER}' --password-stdin"
+                                             }
+
                     sh "docker push zeeshankanuga/${imageName}"
                 }
             }
