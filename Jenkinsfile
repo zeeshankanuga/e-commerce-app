@@ -42,9 +42,11 @@ pipeline {
                                              }
 
                     sh "docker push zeeshankanuga/${imageName}"
+                    sh "docker system prune -f"
                 }
             }
         }
+
     }
 
 }
