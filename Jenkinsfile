@@ -49,14 +49,17 @@ pipeline {
                                              }
 
                     sh "docker push zeeshankanuga/${imageName}"
-                    sh "docker system prune -a -f"
                 }
+
                 // Push the Docker migration image to the registry
                 script {
                     def migrationImageName = "db-migration:${env.BUILD_NUMBER}"
                     sh "docker tag ${migrationImageName} zeeshankanuga/${migrationImageName}"
                     sh "docker push zeeshankanuga/${migrationImageName}"
                 }
+                
+                // Clean up local Docker images to save space
+                sh "docker system prune -a -f"
             }
         }
     }
