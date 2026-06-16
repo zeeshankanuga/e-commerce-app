@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: persistentVolumeclaim
+metadata:
+  name: e-commerce-app-pvc
+  namespace: e-commerce-app
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi

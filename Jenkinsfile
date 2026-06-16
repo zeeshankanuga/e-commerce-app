@@ -22,6 +22,13 @@ pipeline {
                     DOCKER_BUILDKIT=0 docker build -t ${imageName} .
                     """
                 }
+                // Build migration image (path /scripts/Dockerfile.migration)
+                script {
+                    def migrationImageName = "db-migration:${env.BUILD_NUMBER}"
+                    sh """
+                    DOCKER_BUILDKIT=0 docker build -t ${migrationImageName} -f scripts/Dockerfile.migration .
+                    """
+                }
             }
         }
         stage('Push') {
@@ -44,9 +51,14 @@ pipeline {
                     sh "docker push zeeshankanuga/${imageName}"
                     sh "docker system prune -a -f"
                 }
+                // Push the Docker migration image to the registry
+                script {
+                    def migrationImageName = "db-migration:${env.BUILD_NUMBER}"
+                    sh "docker tag ${migrationImageName} zeeshankanuga/${migrationImageName}"
+                    sh "docker push zeeshankanuga/${migrationImageName}"
+                }
             }
         }
-
     }
 
 }
