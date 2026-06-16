@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: persistentVolume
+metadata:
+  name: e-commerce-app-pv
+  namespace: e-commerce-app
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /mnt/data
