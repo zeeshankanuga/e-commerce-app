@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: deployment
+kind: Deployment
 metadata:
   name: e-commerce-app-deployment
   namespace: e-commerce-app
@@ -34,22 +34,22 @@ spec:
               memory: "256Mi"
               cpu: "250m"
       
-      startupProbe:
-            httpGet:
-            path: /
-            port: 3000
-            failureThreshold: 30
-            periodSeconds: 10
-      readinessProbe:
-            httpGet:
-            path: /
-            port: 3000
-            initialDelaySeconds: 20
-            periodSeconds: 10
-      livenessProbe:
-            httpGet:
-            path: /
-            port: 3000
-            initialDelaySeconds: 30
-            periodSeconds: 10
+          startupProbe:
+                httpGet:
+                path: /
+                port: 3000
+                failureThreshold: 30
+                periodSeconds: 10
+          readinessProbe:
+                httpGet:
+                path: /
+                port: 3000
+                initialDelaySeconds: 20
+                periodSeconds: 10
+          livenessProbe:
+                httpGet:
+                path: /
+                port: 3000
+                initialDelaySeconds: 30
+                periodSeconds: 10
 
