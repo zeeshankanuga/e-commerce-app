@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: e-commerce-app
-          image: zeeshankanuga/e-commerce-app:1
+          image: zeeshankanuga/e-commerce-app:10
           ports:
             - containerPort: 3000
           envFrom:
@@ -34,22 +34,24 @@ spec:
               memory: "256Mi"
               cpu: "250m"
       
-          startupProbe:
-                httpGet:
-                path: /
-                port: 3000
-                failureThreshold: 30
-                periodSeconds: 10
-          readinessProbe:
-                httpGet:
-                path: /
-                port: 3000
-                initialDelaySeconds: 20
-                periodSeconds: 10
           livenessProbe:
-                httpGet:
-                path: /
-                port: 3000
-                initialDelaySeconds: 30
-                periodSeconds: 10
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+          startupProbe:
+            httpGet:
+              path: /
+              port: 3000
+            failureThreshold: 30
+            periodSeconds: 10
 
