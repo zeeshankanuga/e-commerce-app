@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: e-commerce-app
-          image: zeeshankanuga/e-commerce-app:10
+          image: zeeshankanuga/e-commerce-app:29
           ports:
             - containerPort: 3000
           envFrom:
