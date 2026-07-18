@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
         - name: db-migration
-          image: zeeshankanuga/db-migration:1
+          image: zeeshankanuga/db-migration:10
           imagePullPolicy: Always
           env:
             - name: MONGO_URI
