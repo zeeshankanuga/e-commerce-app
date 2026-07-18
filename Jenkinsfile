@@ -61,7 +61,32 @@ pipeline {
                 // Clean up local Docker images to save space
                 sh "docker system prune -a -f"
             }
-        }
+        },
+            stage('Update Kubernetes Manifest') {
+                steps {
+                    withCredentials([usernamePassword(
+                        credentialsId: 'github-credentials',
+                        usernameVariable: 'GIT_USER',
+                        passwordVariable: 'GIT_TOKEN'
+                    )]) {
+
+                        sh """
+                            sed -i 's|image: zeeshankanuga/e-commerce-app:.*|image: zeeshankanuga/e-commerce-app:${BUILD_NUMBER}|' kubernetes/deployment.yaml
+
+                            sed -i 's|image: zeeshankanuga/db-migration:.*|image: zeeshankanuga/db-migration:${BUILD_NUMBER}|' kubernetes/migration-job.yaml
+
+                            git config user.email "zeeshan.kanuga@gmail.com"
+                            git config user.name "Jenkins"
+
+                            git add kubernetes/deployment.yaml kubernetes/migration-job.yaml
+                            git commit -m "Update images to build ${BUILD_NUMBER}" || true
+
+                            git push https://${GIT_USER}:${GIT_TOKEN}@github.com/zeeshankanuga/e-commerce-app.git HEAD:main
+                        """
+                    }
+                }
+            }
+
     }
 
 }
