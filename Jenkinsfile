@@ -85,7 +85,7 @@ pipeline {
                             git add kubernetes/08-deployment-app.yaml kubernetes/10-job.yaml
                             git commit -m "Update images to build ${BUILD_NUMBER}" || true
 
-                            git push https://${GIT_USER}:${GIT_TOKEN}@github.com/zeeshankanuga/e-commerce-app.git HEAD:main
+                            git push https://${GIT_USER}:${GIT_TOKEN}@github.com/zeeshankanuga/e-commerce-app.git master
                         """
                     }
                 }
