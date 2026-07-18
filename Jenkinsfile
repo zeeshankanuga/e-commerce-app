@@ -19,14 +19,14 @@ pipeline {
                 script {
                     def imageName = "e-commerce-app:${env.BUILD_NUMBER}"
                     sh """
-                    docker build -t ${imageName} .
+                    DOCKER_BUILDKIT=1 docker build --pull -t ${imageName} .
                     """
                 }
                 // Build migration image (path /scripts/Dockerfile.migration)
                 script {
                     def migrationImageName = "db-migration:${env.BUILD_NUMBER}"
                     sh """
-                    docker build -t ${migrationImageName} -f scripts/Dockerfile.migration .
+                    DOCKER_BUILDKIT=1 docker build --pull -t ${migrationImageName} -f scripts/Dockerfile.migration .
                     """
                 }
             }
