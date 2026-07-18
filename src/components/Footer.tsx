@@ -197,7 +197,7 @@ const Footer = () => {
       <div className="mt-4 pt-8 border-t border-gray-200 dark:border-gray-700">
         <div className="container text-center text-sm text-gray-500 dark:text-gray-400">
           <div className="flex items-center justify-center gap-2 mb-3">
-            Made with{" "}
+            Made with LOVE{" "}
             <span className="inline-block animate-heartbeat">
               <svg
                 className="w-5 h-5 text-red-500 hover:text-primary transition-all duration-500"
