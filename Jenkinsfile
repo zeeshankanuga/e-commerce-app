@@ -61,7 +61,7 @@ pipeline {
                 // Clean up local Docker images to save space
                 sh "docker system prune -a -f"
             }
-        },
+        }
             stage('Update Kubernetes Manifest') {
                 steps {
                     withCredentials([usernamePassword(
